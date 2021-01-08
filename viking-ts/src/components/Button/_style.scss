@@ -1,0 +1,12 @@
+@import '../../style/variable';
+
+.btn {
+  position: relative;
+  display: inline-block;
+  font-weight: 300;
+  line-height: $line-height-base;
+  cursor: pointer;
+  background: none;
+  outline: none;
+  border: none;
+}
