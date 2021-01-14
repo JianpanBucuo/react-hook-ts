@@ -41,19 +41,71 @@ export const setIsDataSelectorVisible = (payload: any) => {
   }
 }
 
-export const setHighSpeed = (payload: any) => {
-  return {
-    type: journeryAction.ACTION_SET_HIGHSPEED,
-    payload
-  }
-}
+// export const setHighSpeed = (payload: any) => {
+//   return {
+//     type: journeryAction.ACTION_SET_HIGHSPEED,
+//     payload
+//   }
+// }
 export const toggleHighSpeed = () => {
   return (dispatch: any, getState: any) => {
     const { journey } = getState()
-
+    console.log(journey)
     dispatch({
       type: journeryAction.ACTION_SET_HIGHSPEED,
       highSpeed: !journey.highSpeed
     })
+  }
+}
+export const showCitySelector = (currentSelectingLeftCity: string) => {
+  return (dispatch: any) => {
+    dispatch({
+      type: journeryAction.ACTION_SET_ISCITYSELECTORVISIBLE,
+      payload: false
+    })
+    dispatch({
+      type: journeryAction.ACTION_SET_CURRENTSELECTINGLEFTCITY,
+      payload: currentSelectingLeftCity
+    })
+  }
+}
+
+export function hideCitySeletor() {
+  return {
+    type: journeryAction.ACTION_SET_ISCITYSELECTORVISIBLE,
+    payload: false
+  }
+}
+export function setSeletedCity(city: string) {
+  return (dispatch: any, getState: any) => {
+    const { journey } = getState()
+    if (journey.currentSelectingLeftCity) {
+      dispatch(setFrom(city))
+    } else {
+      dispatch(setTo(city))
+    }
+  }
+}
+
+export function showDateSelector() {
+  return {
+    type: journeryAction.ACTION_SET_ISDATASELECTORVISIBLE,
+    payload: true
+  }
+}
+
+export function hideDateSelector() {
+  return {
+    type: journeryAction.ACTION_SET_ISDATASELECTORVISIBLE,
+    payload: false
+  }
+}
+
+export function exchangeFromTo() {
+  return (dispatch: any, getState: any) => {
+    const { journey } = getState()
+    const { from, to } = journey
+    dispatch(setFrom(to))
+    dispatch(setTo(from))
   }
 }

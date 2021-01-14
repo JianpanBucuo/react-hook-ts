@@ -1,2 +1,8 @@
-header {
+.header {
+  display: flex;
+  flex-direction: row;
+  background: #ddd;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #fff;
 }
